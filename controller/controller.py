@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import json
 
 meal_dict = {
@@ -9,11 +9,10 @@ meal_dict = {
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    print("Hello World")
-    return "<p>Hello, World!</p>"
+def welcome():
+    return render_template("home.html")
 
-@app.route('/meals', methods= ["GET"])
+@app.route('/full_list_meals', methods= ["GET"])
 def get_meals():
     """
     Get all available meals, in database and display them **tbd on display format**
@@ -22,17 +21,28 @@ def get_meals():
     if request.method == "GET":
         return json.dumps(meal_dict)
 
+@app.route('/add_meal', methods = ["GET"])
+def display_meal_addition_form():
+    """
+    display form to add new meal
+    """
+    return render_template("add_meal.html")
+
 @app.route('/add_meal', methods = ["POST"])
 def add_meal():
     """
     Add new meal to database
-    :return:
     """
     if request.method == "POST":
-        #add meal
+        #get meal inputs
         current_int = len(meal_dict) + 1
-        new_meal = request.get_json()
-        meal_dict[current_int] = new_meal
+        meal_name = request.form.get("meal_name")
+        meal_tags = request.form.getlist("tags")
+        meal_link = request.form.get("meal_link")
+        #make dictionary
+        meal_inner_dict = {"link": meal_link, "title": meal_name, "tags": meal_tags}
+
+        meal_dict[current_int] = meal_inner_dict
     return {'message': "Successfully added new meal"}
 
 

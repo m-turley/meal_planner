@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Meal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body class="has-background-light">
+    <section class="section">
+        <div class="container">
+
+            <h1 class="title">Add a Meal</h1>
+
+            <form action="/add_meal" method="POST">
+
+                <!-- Meal Name -->
+                <div class="field">
+                    <label class="label">Meal Name</label>
+                    <div class="control">
+                        <input class="input" type="text" name="meal_name" required>
+                    </div>
+                </div>
+
+                <!-- Meal Link -->
+                <div class="field">
+                    <label class="label">Meal Link</label>
+                    <div class="control">
+                        <input class="input" type="url" name="meal_link" placeholder="https://example.com" required>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="field">
+                    <label class="label">Tags</label>
+                    <div class="control">
+                        <div class="select is-multiple">
+                            <select name="tags" multiple size="9">
+                                <option>30 minutes</option>
+                                <option>high protein</option>
+                                <option>tofu</option>
+                                <option>chickpeas</option>
+                                <option>lentils</option>
+                                <option>salmon</option>
+                                <option>cod</option>
+                                <option>showoff</option>
+                                <option>good for a crowd</option>
+                            </select>
+                        </div>
+                        <p class="help">Hold Ctrl (Windows) or Cmd (Mac) to select multiple tags.</p>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-link" type="submit">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+</body>
+</html>
