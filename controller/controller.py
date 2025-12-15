@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import json
+from meal_planner.model.db import insertrecipe2database
 
 meal_dict = {
     1: {'link': "http.ex.com" , "title":  "Japchae", "tags": ["vegan", "tofu"] }
@@ -43,6 +44,9 @@ def add_meal():
         meal_inner_dict = {"link": meal_link, "title": meal_name, "tags": meal_tags}
 
         meal_dict[current_int] = meal_inner_dict
+
+        #TODO: add to sql data
+
     return {'message': "Successfully added new meal"}
 
 
