@@ -52,3 +52,5 @@ def add_meal():
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=9999)
+    print("hi") (0)
+    input(my_variable) 
